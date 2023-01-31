@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>NINJUTSU</title>
+        <script src="./js/NINJUTSU.js"></script>
+    </head>
+    <body>
+        <h1>NINJUTSU! 🔥💧❄</h1>
+
+        <section id="selec-guerrero">
+            <h2>Elegí a tu guerrero</h2>
+
+            <label for="Lopez">Lopez</label>
+            <input type="radio" name="guerrero" id="Lopez"/>
+
+            <label for="Zica">Zica</label>
+            <input type="radio" name="guerrero" id="Zica"/>
+
+            <label for="Trunso">Trunso</label>
+            <input type="radio" name="guerrero" id="Trunso"/>
+
+            <label for="Pato">Pato</label>
+            <input type="radio" name="guerrero" id="Pato"/>
+
+            <label for="Peña">Peña</label>
+            <input type="radio" name="guerrero" id="Peña"/>
+
+            <label for="Mati">Mati</label>
+            <input type="radio" name="guerrero" id="Mati"/>
+
+            Lopez -> Fuego
+            Zica -> Agua
+            Trunso -> Nieve
+            Pato -> Fuego y Agua
+            Peña -> Nieve y Fuego
+            Mati -> Agua y Nieve
+
+            <button id="boton-guerrero">Seleccionar</button>
+        </section>
+
+        <section id="selec-ataque">
+            <h2>Elegí tu ataque</h2>
+
+            <p>Tu guerrero <span id="guerreroPlayer"></span> tiene <span>3</span> vidas</p>
+            <p>El guerrero del enemigo <span id="guerreroPC"></span> tiene <span>3</span> vidas</p>
+
+            <p>
+                <button id="boton-fuego">Fuego 🔥</button>
+                <button id="boton-agua">Agua 💧</button>
+                <button id="boton-nieve">Nieve ❄</button>
+            </p>
+        </section>
+
+        <section id="mensajes">
+            <p>Tu guerrero atacó con <span id="ataque"></span>, el guerrero del enemigo atacó con <span id="ataquePC"></span> - <span id="resultadoRonda"></span></p>
+        </section>
+
+        <section id="reiniciar">
+            <button>Reiniciar</button>
+        </section>
+    </body>
+</html>
