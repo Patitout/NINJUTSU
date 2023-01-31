@@ -1,5 +1,4 @@
 var ataqueJugador = document.getElementById("ataque")
-var pc = aleatorio(1,3)
 
 function aleatorio(min, max) {
     return Math.floor(Math.random() * (max - min + 1)+ min)
@@ -74,30 +73,11 @@ function inciarJuego() {
     let botonNieve = document.getElementById("boton-nieve")
     botonNieve.addEventListener('click', ataqueNieve)
     botonNieve.addEventListener('click', ataqueDePC)
-    
-    
-    let victorias = 0
-    let derrotas = 0
-
-    while (victorias < 3 && derrotas < 3) {
-        //pc = aleatorio(1,3)    
-        //alert("Elegiste "+jugador)
-
-        // COMBATE
-        if (ataqueJugador == pc) {
-        alert("⭕EMPATE⭕") 
-        } else if (((ataqueJugador - pc) == 1) || ((ataqueJugador - pc) == -2)) {
-        alert("✅GANASTE✅")
-        victorias = victorias + 1
-        } else {
-        alert("❌PERDISTE❌")
-        derrotas = derrotas + 1
-        }
-    } 
 }
 
 //Agarra el valor de pc y cambia el texto en la parte del combate de pc
 function ataqueDePC() {
+    pc = aleatorio(1,3)
     let SpanAtaquePC = document.getElementById("ataquePC")
     if(pc == 1){
         (SpanAtaquePC.innerHTML = ' Fuego')
