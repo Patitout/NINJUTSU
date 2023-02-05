@@ -1,7 +1,16 @@
-var ataqueJugador = document.getElementById("ataque")
+let ataqueJugador
+let ataqueEnemigo
 
-function aleatorio(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)+ min)
+function iniciarJuego() {
+    let botonMascotaJugador = document.getElementById('boton-guerrero')
+    botonMascotaJugador.addEventListener('click', seleccionarGuerrero)
+
+    let botonFuego = document.getElementById('boton-fuego')
+    botonFuego.addEventListener('click', ataqueFuego)
+    let botonAgua = document.getElementById('boton-agua')
+    botonAgua.addEventListener('click', ataqueAgua)
+    let botonNieve = document.getElementById('boton-nieve')
+    botonNieve.addEventListener('click', ataqueNieve)
 }
 
 //Hace que puedas elegir un guerrero y que se cambie en el texto
@@ -30,80 +39,58 @@ function seleccionarGuerrero() {
         alert("No seleccionaste nada, tarado, elegí algún guerrero")
     }
 
-    seleccionarGuerreroPC()
+    seleccionarGuerreroEnemigo()
 }
 
-/*Sirve para que la PC elija un campeon, y lo cambie en el texto
-de momento los caampeones no tienen caracteristicas especiales
-que puedan variar el resultado de un juego*/
-function seleccionarGuerreroPC(jugada) {
-    let PCrandy = aleatorio(1,6)
-    let spanGuerroPC = document.getElementById("guerreroPC")
-    if(PCrandy == 1){
-        (spanGuerroPC.innerHTML = ' Lopez')
-    } else if(PCrandy == 2){
-        (spanGuerroPC.innerHTML = ' Zica')
-    } else if(PCrandy == 3){
-        (spanGuerroPC.innerHTML = ' Trunso')
-    } else if(PCrandy == 4){
-        (spanGuerroPC.innerHTML = ' Pato')
-    } else if(PCrandy == 5){
-        (spanGuerroPC.innerHTML = ' Peña')
-    } else if(PCrandy == 6){
-        (spanGuerroPC.innerHTML = ' Mati')
+function seleccionarGuerreroEnemigo() {
+    let pcRandy = aleatorio(1,3)
+    let spanGuerreroPC = document.getElementById('guerreroPC')
+
+    if (pcRandy == 1) {
+        spanGuerreroPC.innerHTML = 'Lopez'
+    } else if (pcRandy == 2) {
+        spanGuerreroPC.innerHTML = 'Zica'
+    } else {
+        spanGuerreroPC.innerHTML = 'Trunso'
     }
 }
 
-function inciarJuego() {
-    // Permite seleccionar un guerrero
-    let botonGuerreroPlayer = document.getElementById('boton-guerrero')
-    botonGuerreroPlayer.addEventListener('click', seleccionarGuerrero)
-
-    /*Escucha cuando se elige un ataque y activa las funciones
-    tanto del ataqueFuego, para que cambie el valor de "ataqueJugador"
-    y lo escriba en la parte  de combate
-    como la funcion de "ataqueDePC" que toma el valor de "pc"
-    para escribir en la parte de combate pc que eligio aleatoriamente el pc*/
-    let botonFuego = document.getElementById("boton-fuego")
-    botonFuego.addEventListener('click', ataqueFuego)
-    botonFuego.addEventListener('click', ataqueDePC)
-    let botonAgua = document.getElementById("boton-agua")
-    botonAgua.addEventListener('click', ataqueAgua)
-    botonAgua.addEventListener('click', ataqueDePC)
-    let botonNieve = document.getElementById("boton-nieve")
-    botonNieve.addEventListener('click', ataqueNieve)
-    botonNieve.addEventListener('click', ataqueDePC)
-}
-
-//Agarra el valor de pc y cambia el texto en la parte del combate de pc
-function ataqueDePC() {
-    pc = aleatorio(1,3)
-    let SpanAtaquePC = document.getElementById("ataquePC")
-    if(pc == 1){
-        (SpanAtaquePC.innerHTML = ' Fuego')
-    } else if(pc == 2){
-        (SpanAtaquePC.innerHTML = ' Agua')
-    } else if(pc == 3){
-        (SpanAtaquePC.innerHTML = ' Nieve')
-    }
-}
-
-/*Cambia el valor de "ataqueJugador" asi después lo puedo usar en el sistema para saber si perdí o gané. 
-También cambia el texto en la parte del combate*/
 function ataqueFuego() {
-    ataqueJugador = 1
-    (ataque.innerHTML = ' Fuego')
+    ataqueJugador = 'FUEGO'
+    ataqueAleatorioEnemigo()
 }
-
 function ataqueAgua() {
-    ataqueJugador = 2
-    (ataque.innerHTML = ' Agua')
+    ataqueJugador = 'AGUA'
+    ataqueAleatorioEnemigo()
 }
-
 function ataqueNieve() {
-    ataqueJugador = 3
-    (ataque.innerHTML = ' Nieve')
+    ataqueJugador = 'NIEVE'
+    ataqueAleatorioEnemigo()
 }
 
-// Hace que cargue primero el html y una vez cargue carga recien la function de iniciar juego
-window.addEventListener('load', inciarJuego)
+function ataqueAleatorioEnemigo() {
+    let ataqueAleatorio = aleatorio(1,3)
+    
+    if (ataqueAleatorio == 1) {
+        ataqueEnemigo = 'FUEGO'
+    } else if (ataqueAleatorio == 2) {
+        ataqueEnemigo = 'AGUA'
+    } else {
+        ataqueEnemigo = 'NIEVE'
+    }
+
+    crearMensaje()
+}
+
+function crearMensaje() {
+    let sectionMensajes = document.getElementById('mensajes')
+    
+    let parrafo = document.createElement('p')
+    parrafo.innerHTML = 'Tu mascota atacó con ' + ataqueJugador + ', las mascota del enemigo atacó con ' + ataqueEnemigo + '- PENDIENTE'
+}
+
+function aleatorio(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
+window.addEventListener('load', iniciarJuego)
