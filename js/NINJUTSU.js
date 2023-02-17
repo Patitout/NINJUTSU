@@ -1,5 +1,6 @@
 let ataqueJugador
 let ataqueEnemigo
+let numerito
 
 function iniciarJuego() {
     let botonMascotaJugador = document.getElementById('boton-guerrero')
@@ -61,29 +62,25 @@ function seleccionarGuerreroEnemigo() {
     }
 }
 
-let numerito
-
 function ataqueFuego() {
     ataqueJugador = 'FUEGO'
-    ataqueAleatorioEnemigo()
     numerito = 1
+    ataqueAleatorioEnemigo()
 }
 function ataqueAgua() {
     ataqueJugador = 'AGUA'
-    ataqueAleatorioEnemigo()
     numerito = 2
+    ataqueAleatorioEnemigo()
 }
 
 function ataqueNieve() {
     ataqueJugador = 'NIEVE'
-    ataqueAleatorioEnemigo()
     numerito = 3
+    ataqueAleatorioEnemigo()
 }
 
-
+let ataqueAleatorio = aleatorio(1,3)
 function ataqueAleatorioEnemigo() {
-    let ataqueAleatorio = aleatorio(1,3)
-    
     if (ataqueAleatorio == 1) {
         ataqueEnemigo = 'FUEGO'
     } else if (ataqueAleatorio == 2) {
@@ -99,9 +96,23 @@ function crearMensaje() {
     let sectionMensajes = document.getElementById('mensajes')
     
     let parrafo = document.createElement('p')
-    parrafo.innerHTML = 'Tu guerrero atacó con ' + ataqueJugador + ', el guerrero del enemigo atacó con ' + ataqueEnemigo + numerito
+    parrafo.innerHTML = 'Tu guerrero atacó con ' + ataqueJugador + ', el guerrero del enemigo atacó con ' + ataqueEnemigo + resultado()
 
     sectionMensajes.appendChild(parrafo)
+}
+
+let vidasJugador = 3
+let vidasPC = 3
+function resultado() {
+    if (numerito == ataqueAleatorio) {
+        return " ⭕EMPATE⭕"
+        } else if (((numerito - ataqueAleatorio) == 1) || ((numerito - ataqueEnemigo) == -2)) {
+        return " ✅GANASTE✅"
+        vidasPC = vidasPC - 1
+        } else {
+        return " ❌PERDISTE❌"
+        vidasJugador = vidasJugador - 1
+        }
 }
 
 
