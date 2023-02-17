@@ -79,17 +79,9 @@ function ataqueNieve() {
     ataqueAleatorioEnemigo()
 }
 
-let ataqueAleatorio = aleatorio(1,3)
 function ataqueAleatorioEnemigo() {
-    if (ataqueAleatorio == 1) {
-        ataqueEnemigo = 'FUEGO'
-    } else if (ataqueAleatorio == 2) {
-        ataqueEnemigo = 'AGUA'
-    } else {
-        ataqueEnemigo = 'NIEVE'
-    }
-
-    crearMensaje()
+    ataques = ["FUEGO", "AGUA", "NIEVE"]
+    return ataques[Math.floor(Math.random() * ataques.length-1)];
 }
 
 function crearMensaje() {
@@ -104,10 +96,11 @@ function crearMensaje() {
 let vidasJugador = 3
 let vidasPC = 3
 function resultado() {
+    let ataqueAleatorio = ataqueAleatorioEnemigo();
     if (numerito == ataqueAleatorio) {
-        return " ⭕EMPATE⭕"
+        return "⭕EMPATE⭕"
         } else if (((numerito - ataqueAleatorio) == 1) || ((numerito - ataqueEnemigo) == -2)) {
-        return " ✅GANASTE✅"
+        return "✅GANASTE✅"
         vidasPC = vidasPC - 1
         } else {
         return " ❌PERDISTE❌"
