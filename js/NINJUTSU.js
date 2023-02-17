@@ -61,29 +61,25 @@ function seleccionarGuerreroEnemigo() {
     }
 }
 
+let numerito
+
 function ataqueFuego() {
     ataqueJugador = 'FUEGO'
     ataqueAleatorioEnemigo()
+    numerito = 1
 }
 function ataqueAgua() {
     ataqueJugador = 'AGUA'
     ataqueAleatorioEnemigo()
+    numerito = 2
 }
+
 function ataqueNieve() {
     ataqueJugador = 'NIEVE'
     ataqueAleatorioEnemigo()
+    numerito = 3
 }
 
-function quieroUnNumero() {
-    var numerito
-    if (ataqueJugador == 'FUEGO') {
-        numerito = '1'
-    } else if (ataqueJugador == 'AGUA') {
-        numerito = '2'
-    } else {
-        numerito = '3'
-    }
-}
 
 function ataqueAleatorioEnemigo() {
     let ataqueAleatorio = aleatorio(1,3)
