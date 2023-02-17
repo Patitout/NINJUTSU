@@ -43,15 +43,21 @@ function seleccionarGuerrero() {
 }
 
 function seleccionarGuerreroEnemigo() {
-    let pcRandy = aleatorio(1,3)
+    let pcRandy = aleatorio(1,6)
     let spanGuerreroPC = document.getElementById('guerreroPC')
 
     if (pcRandy == 1) {
         spanGuerreroPC.innerHTML = 'Lopez'
     } else if (pcRandy == 2) {
         spanGuerreroPC.innerHTML = 'Zica'
-    } else {
+    } else if (pcRandy == 3) {
         spanGuerreroPC.innerHTML = 'Trunso'
+    } else if (pcRandy == 4) {
+        spanGuerreroPC.innerHTML = 'Pato'
+    } else if (pcRandy == 5) {
+        spanGuerreroPC.innerHTML = 'Peña'
+    } else {
+        spanGuerreroPC.innerHTML = 'Mati'
     }
 }
 
@@ -66,6 +72,17 @@ function ataqueAgua() {
 function ataqueNieve() {
     ataqueJugador = 'NIEVE'
     ataqueAleatorioEnemigo()
+}
+
+function quieroUnNumero() {
+    var numerito
+    if (ataqueJugador == 'FUEGO') {
+        numerito = '1'
+    } else if (ataqueJugador == 'AGUA') {
+        numerito = '2'
+    } else {
+        numerito = '3'
+    }
 }
 
 function ataqueAleatorioEnemigo() {
@@ -86,8 +103,11 @@ function crearMensaje() {
     let sectionMensajes = document.getElementById('mensajes')
     
     let parrafo = document.createElement('p')
-    parrafo.innerHTML = 'Tu mascota atacó con ' + ataqueJugador + ', las mascota del enemigo atacó con ' + ataqueEnemigo + '- PENDIENTE'
+    parrafo.innerHTML = 'Tu guerrero atacó con ' + ataqueJugador + ', el guerrero del enemigo atacó con ' + ataqueEnemigo + numerito
+
+    sectionMensajes.appendChild(parrafo)
 }
+
 
 function aleatorio(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min)
